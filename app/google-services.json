@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "32719240382",
+    "firebase_url": "https://sos-restaurant.firebaseio.com",
+    "project_id": "sos-restaurant",
+    "storage_bucket": "sos-restaurant.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:32719240382:android:df5ee6dd43864e06b2f2ef",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "32719240382-1uppgej53kfiqgoqubcjncbg8f286ijp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.myapplication",
+            "certificate_hash": "c5d7b8d18e026310e6247f1a1018450692530f35"
+          }
+        },
+        {
+          "client_id": "32719240382-2im3usvav8cdr5mfpmfsrjqddfte5mvl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzN_9UG9aEzi00NGWobTdETkMAXdjR4E0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "32719240382-2im3usvav8cdr5mfpmfsrjqddfte5mvl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
