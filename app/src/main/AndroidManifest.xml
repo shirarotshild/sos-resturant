@@ -9,11 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".loginManager"></activity>
+        <activity android:name=".addEmployee"></activity>
+        <activity android:name=".employees" />
+        <activity android:name=".mainScreenManager" />
         <activity android:name=".mainScreenGuest" />
         <activity android:name=".mainScreenMembers" />
         <activity android:name=".mainScreenWorkers" />
-        <activity android:name=".mainScreenManager" />
+        <activity android:name=".loginManager" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

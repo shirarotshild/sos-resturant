@@ -1,96 +1,55 @@
 package com.example.myapplication;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.Button;
-import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
-public class mainScreenManager extends AppCompatActivity {
-    EditText manager_mail, manager_password;
-    Button login_manager;
+public class mainScreenManager extends AppCompatActivity implements View.OnClickListener{
+    Button button_out_manager;
+    Button button_employees;
+    Button button_edit_menu;
+    Button button_vendors;
     FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen_manager);
-
-        mFirebaseAuth = FirebaseAuth.getInstance();
-        manager_mail = findViewById(R.id.manager_mail);
-        manager_password = findViewById(R.id.manager_password);
-        login_manager = findViewById(R.id.login_manager);
-
-        mAuthStateListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
-                if (mFirebaseUser != null) {
-                    Toast.makeText(mainScreenManager.this, "You are logged in", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(mainScreenManager.this, loginManager.class);
-                    startActivity(i);
-                } else {
-                    Toast.makeText(mainScreenManager.this, "Please Login", Toast.LENGTH_SHORT).show();
-                }
-            }
-        };
-
-
-        login_manager.setOnClickListener(new View.OnClickListener() {
+        button_out_manager = findViewById(R.id.button_out_manager);
+        button_employees = findViewById(R.id.button_emloyees);
+        button_edit_menu=findViewById(R.id.button_edit_menu);
+        button_vendors=findViewById(R.id.button_vendors);
+        button_out_manager.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = manager_mail.getText().toString();
-                String pwd = manager_password.getText().toString();
+                FirebaseAuth.getInstance().signOut();
+                Intent intToMain = new Intent(mainScreenManager.this, loginManager.class);
+                startActivity(intToMain);
+            }
+        });
 
-                if (email.isEmpty()) {
-                    manager_mail.setError("Please inter email id");
-                    manager_mail.requestFocus();
-                } else if (pwd.isEmpty()) {
-                    manager_password.setError("Please enter your password");
-                    manager_password.requestFocus();
-                } else if (email.isEmpty() && pwd.isEmpty()) {
-                    Toast.makeText(mainScreenManager.this, "Fields are empty", Toast.LENGTH_SHORT).show();
-                } else if (!(email.isEmpty() && pwd.isEmpty())) {
-
-                    mFirebaseAuth.signInWithEmailAndPassword(email, pwd).addOnCompleteListener(mainScreenManager.this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (!task.isSuccessful()) {
-                                Toast.makeText(mainScreenManager.this, "Login Error, Please Login Again", Toast.LENGTH_SHORT).show();
-                            } else {
-                                Intent intToHome = new Intent(mainScreenManager.this, loginManager.class);
-                                startActivity(intToHome);
-                            }
-                        }
-                    });
-                } else {
-                    Toast.makeText(mainScreenManager.this, "Error Occurred!", Toast.LENGTH_SHORT).show();
-
-                }
-
-
+        button_employees.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(mainScreenManager.this, employees.class);
+                startActivity(i);
             }
         });
 
     }
+    public void onClick(View v) {
+        if (v == button_out_manager) {
+        }
+        if (v == button_employees) {
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        mFirebaseAuth.addAuthStateListener(mAuthStateListener);
 
+        }
 
     }
-}
+        }

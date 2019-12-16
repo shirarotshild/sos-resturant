@@ -8,8 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.myapplication.mainScreenManager;
-
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button button_manager;
@@ -29,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         button_manager.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, mainScreenManager.class);
+                Intent i = new Intent(MainActivity.this, loginManager.class);
                 startActivity(i);
             }
         });
