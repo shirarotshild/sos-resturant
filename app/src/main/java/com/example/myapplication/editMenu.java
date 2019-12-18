@@ -37,12 +37,12 @@ public class editMenu extends AppCompatActivity {
         button_add_dish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i= new Intent(editMenu.this, addDish.class);
+                Intent i= new Intent(editMenu.this, addDish1.class);
                 startActivity(i);
             }
         });
 
-        reff= FirebaseDatabase.getInstance().getReference("dishesInformation");
+        reff= FirebaseDatabase.getInstance().getReference("dishInformation");
 
         list_dishes= findViewById(R.id.list_dishes);
         adapter= new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
@@ -81,5 +81,10 @@ public class editMenu extends AppCompatActivity {
         });
 
 
+    }
+
+    public void onClick(View v) {
+        if (v == button_add_dish) {
+        }
     }
 }
