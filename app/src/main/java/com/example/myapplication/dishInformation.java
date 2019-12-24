@@ -1,25 +1,26 @@
 package com.example.myapplication;
 
 public class dishInformation {
-
+   private static int dish_id = 0;
     String dish_name;
-    String dish_id;
     String dish_price;
 
     public dishInformation(String dish_name,String dish_id, String price) {
         this.dish_name = dish_name;
-        this.dish_id=dish_id;
-        this.dish_price=price;
+        ++this.dish_id;
+        this.dish_price = price;
     }
-    public dishInformation(){};
+    public dishInformation(){
+        ++this.dish_id;
+    };
 
-    public String getDish_id() {
+    public int getDish_id() {
         return dish_id;
     }
 
-    public void setDish_id(String dish_id) {
-        this.dish_id = dish_id;
-    }
+   // public void setDish_id(int dish_id) {
+       // this.dish_id = dish_id;
+   // }
 
     public String getPrice() {
         return dish_price;

@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         button_members.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, mainScreenMembers.class);
+                Intent i = new Intent(MainActivity.this, LoginMember.class);
                 startActivity(i);
             }
         });

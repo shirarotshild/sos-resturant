@@ -6,4 +6,25 @@
     android:layout_height="match_parent"
     tools:context=".mainScreenMembers">
 
+    <Button
+        android:id="@+id/button_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="menu"
+        tools:layout_editor_absoluteX="133dp"
+        tools:layout_editor_absoluteY="93dp" />
+
+    <Button
+        android:id="@+id/button_log_out"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="294dp"
+        android:layout_marginTop="549dp"
+        android:layout_marginEnd="29dp"
+        android:layout_marginBottom="6dp"
+        android:text="logout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

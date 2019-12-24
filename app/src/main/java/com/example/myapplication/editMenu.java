@@ -49,6 +49,7 @@ public class editMenu extends AppCompatActivity {
 
         list_dishes.setAdapter(adapter);
 
+
         reff.addChildEventListener(new ChildEventListener() {
             @Override
             //1111
@@ -61,6 +62,7 @@ public class editMenu extends AppCompatActivity {
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
 
             }
 
