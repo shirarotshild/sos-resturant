@@ -10,7 +10,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.example.myapplication.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -35,7 +34,7 @@ public class mainScreenWorkers extends AppCompatActivity {
 
         mFirebaseAuth = FirebaseAuth.getInstance();
         kitchenOrder= findViewById(R.id.kitchen_orders);
-        reff= FirebaseDatabase.getInstance().getReference("kitchen order");
+        reff= FirebaseDatabase.getInstance().getReference("Orders");
         adapter= new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
         kitchenOrder.setAdapter(adapter);
 

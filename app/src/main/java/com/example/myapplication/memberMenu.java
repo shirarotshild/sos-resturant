@@ -1,4 +1,4 @@
-package com.example.myapplication;
+ package com.example.myapplication;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,6 +16,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.myapplication.MyOrder;
+import com.example.myapplication.Permit;
+import com.example.myapplication.R;
+import com.example.myapplication.dishInformation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -40,6 +44,7 @@ public class memberMenu extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
     FirebaseAuth mFirebaseAuth;
     private DatabaseReference mDatabase;
+    Order orders;
     Permit m;
     Button myOrder;
 
@@ -56,6 +61,7 @@ public class memberMenu extends AppCompatActivity {
         mFirebaseAuth = FirebaseAuth.getInstance();
         myOrder= findViewById(R.id.button_my_order);
         mDatabase = FirebaseDatabase.getInstance().getReference("Orders");
+        orders =new Order();
 
 
         reff.addChildEventListener(new ChildEventListener() {
@@ -95,10 +101,10 @@ public class memberMenu extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getApplicationContext(), (String) parent.getItemAtPosition(position), Toast.LENGTH_SHORT).show();
-                final String sauv=(String) parent.getItemAtPosition(position);
+                final String dish=(String) parent.getItemAtPosition(position);
                 final AlertDialog.Builder mBuilder = new AlertDialog.Builder(memberMenu.this);
                 mBuilder.setTitle("Valide Your Command ");
-                mBuilder.setMessage(sauv);
+                mBuilder.setMessage(dish);
 
                 mBuilder.setPositiveButton("Accept", new DialogInterface.OnClickListener() {
                     @Override
@@ -106,17 +112,8 @@ public class memberMenu extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Accept", Toast.LENGTH_SHORT).show();
                         // m= new Member(mFirebaseAuth,mDatabase);
 
-                        Order orders =new Order(sauv,mFirebaseAuth.getCurrentUser().getUid());
-                        FirebaseDatabase.getInstance().getReference("Orders")
-                                .child(mFirebaseAuth.getCurrentUser().getUid()).push()
-                                .setValue(orders).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                }
-                            }
 
-                        });
+                        orders.addDish(dish);
 
                     }});
                 mBuilder.setNegativeButton("Deny", new DialogInterface.OnClickListener() {
@@ -140,6 +137,7 @@ public class memberMenu extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i= new Intent(memberMenu.this, MyOrder.class);
+                i.putExtra("order", orders);
                 startActivity(i);
             }
         });

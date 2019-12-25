@@ -40,18 +40,20 @@ public class MyOrder extends AppCompatActivity {
     ArrayAdapter<String> adapter;
     FirebaseAuth mFirebaseAuth;
     DatabaseReference from;
+    Order tempOrder;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_order);
+        tempOrder= (Order) getIntent().getSerializableExtra("order");
 
         mFirebaseAuth = FirebaseAuth.getInstance();
         order_list = findViewById(R.id.my_order_list);
         order = findViewById(R.id.button_order);
         reff= FirebaseDatabase.getInstance().getReference("Orders").child(mFirebaseAuth.getCurrentUser().getUid());
-        adapter= new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
+        adapter= new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, tempOrder.getDishes());
         order_list.setAdapter(adapter);
         from= FirebaseDatabase.getInstance().getReference("Orders");
 
@@ -59,42 +61,11 @@ public class MyOrder extends AppCompatActivity {
 
 
 
-        reff.addChildEventListener(new ChildEventListener() {
-            @Override
-            //1111
-            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                String string=  dataSnapshot.getValue(Order.class).toString();
-                arrayList.add(string);
-                adapter.notifyDataSetChanged();
-
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-            }
-
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
+//to add delete option
         order_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                adapter.notifyDataSetChanged();
 
             }
 
@@ -103,35 +74,8 @@ public class MyOrder extends AppCompatActivity {
         order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final DatabaseReference re= FirebaseDatabase.getInstance().getReference("kitchen order");
-                from.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        re.setValue(dataSnapshot.getValue(), new DatabaseReference.CompletionListener() {
-                            @Override
-                            public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
-                                reff.removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void aVoid) {
-                                        //     Constant.print("REMOVED: " + fromPath.getKey());
-                                    }
-                                });
+                reff.push().setValue(tempOrder);
 
-                            }
-                        });
-                    /*   reff.updateChildren(updates).addOnSuccessListener(new OnSuccessListener<Void>() {
-                           @Override
-                           public void onSuccess(Void aVoid) {
-                               Constant.print("REMOVED: " + fromPath.getKey());
-                           }
-                       });*/
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
             }
         });
 

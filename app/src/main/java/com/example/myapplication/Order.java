@@ -1,33 +1,28 @@
 package com.example.myapplication;
 
-public class Order {
+import java.io.Serializable;
+import java.util.ArrayList;
 
-    private String dish;
-    private String uid;
+public class Order implements Serializable {
 
-    Order (){}
+    private ArrayList<String> dishes;
+    String orderId;
 
-    Order(String name,String uid){
+    Order (){
+        dishes= new ArrayList<>();
 
-        this.dish=name;
-        this.uid=uid;
-    }
-    public void setName(String name) {
-        this.dish = name;
     }
 
-    public String getName() {
-        return dish;
+
+    public void addDish(String dish){
+        dishes.add(dish);
     }
 
-    public void setUid(String uid) {
-        this.uid = uid;
+    public int getSize(){
+        return dishes.size();
     }
+    public ArrayList<String> getDishes(){return dishes;}
 
-    public String getUid() {
-        return uid;
-    }
 
-    public String toString(){return getName();}
+    public String toString(){return orderId;}
 }
-
