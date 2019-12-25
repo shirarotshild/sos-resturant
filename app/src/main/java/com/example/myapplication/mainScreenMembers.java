@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -14,6 +15,7 @@ public class mainScreenMembers extends AppCompatActivity {
 
     Button btnLogout;
     FirebaseAuth mFirebaseAuth;
+    String u;
 
 
     @Override
@@ -22,12 +24,15 @@ public class mainScreenMembers extends AppCompatActivity {
         setContentView(R.layout.activity_main_screen_members);
 
         btnLogout = findViewById(R.id.button_log_out);
+        mFirebaseAuth= FirebaseAuth.getInstance();
+        //  Toast.makeText(mainScreenMembers.this,"Please Login"+ mFirebaseAuth.getCurrentUser().getUid(),Toast.LENGTH_SHORT).show();
+        //   u=FirebaseAuth.getCurrentUser().getUid();
 
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
-                Intent intToMain = new Intent(mainScreenMembers.this, LoginMember .class);
+                Intent intToMain = new Intent(mainScreenMembers.this, MainActivity.class);
                 startActivity(intToMain);
             }
         });
@@ -36,8 +41,11 @@ public class mainScreenMembers extends AppCompatActivity {
         button_menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
+                //   FirebaseAuth.getInstance().signOut();
+
                 Intent intToMain = new Intent(mainScreenMembers.this,memberMenu.class);
+                // intToMain.putExtra("uid",mFirebaseAuth.getCurrentUser().getUid());
+
                 startActivity(intToMain);
             }
         });

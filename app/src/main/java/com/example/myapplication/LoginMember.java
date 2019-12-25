@@ -29,7 +29,7 @@ public class LoginMember extends AppCompatActivity {
     FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
     private DatabaseReference mDatabase;
-    //  Permit m;
+    Permit m;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +41,7 @@ public class LoginMember extends AppCompatActivity {
         editText_member_password = findViewById(R.id.editText_member_password);
         button_login_member = findViewById(R.id.button_member_sign_up);
         textView_member_sign = findViewById(R.id.textView_member_login);
-        mDatabase = FirebaseDatabase.getInstance().getReference("members");
+        mDatabase = FirebaseDatabase.getInstance().getReference("Orders");
 
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -79,6 +79,7 @@ public class LoginMember extends AppCompatActivity {
                 }
                 else  if(!(email.isEmpty() && pwd.isEmpty())){
 
+
                     mFirebaseAuth.signInWithEmailAndPassword(email, pwd).addOnCompleteListener(LoginMember.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
@@ -87,12 +88,15 @@ public class LoginMember extends AppCompatActivity {
                             }
                             else{
 
-                              /*  if(m.getKind()==1) {
-                                    Intent intToHome = new Intent(LoginMember.this, mainScreenMembers.class);
-                                    startActivity(intToHome);
-                                }*/
+                                //  m= new Member(mFirebaseAuth,mDatabase);
+                                //  if(m.getKind()==1) {
+                                FirebaseDatabase.getInstance().getReference("Orders")
+                                        .child(mFirebaseAuth.getCurrentUser().getUid()).setValue(0);
+                                Intent intToHome = new Intent(LoginMember.this, mainScreenMembers.class);
+                                startActivity(intToHome);
+                                // }*/
                                 //  else{
-                                Toast.makeText(LoginMember.this, " You do not have permission for this page",Toast.LENGTH_SHORT).show();
+                                //  Toast.makeText(LoginMember.this, " You do not have permission for this page",Toast.LENGTH_SHORT).show();
                                 // }
                             }
                         }

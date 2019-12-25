@@ -12,6 +12,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.myapplication.LoginMember;
+import com.example.myapplication.Permit;
+import com.example.myapplication.R;
+import com.example.myapplication.mainScreenMembers;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -78,7 +82,7 @@ public class MemberSignUp extends AppCompatActivity {
                             else {
                                 String ID= member_ID.getText().toString();
                                 writeNewUser(ID, name,email);
-                                startActivity(new Intent(MemberSignUp.this,mainScreenMembers.class));
+                                startActivity(new Intent(MemberSignUp.this, mainScreenMembers.class));
                             }
                         }
                     });
@@ -93,15 +97,15 @@ public class MemberSignUp extends AppCompatActivity {
         tvSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MemberSignUp.this,LoginMember.class);
+                Intent i = new Intent(MemberSignUp.this, LoginMember.class);
                 startActivity(i);
             }
         });
     }
     private void writeNewUser(String userId, String name, String email) {
-        Permit newMember = new Member(name, email);
+        Permit newMember = new Member(name, email,mFirebaseAuth.getCurrentUser().getUid());
 
-        mDatabase.child("members").child(userId).setValue(newMember);
+        mDatabase.child("members").child( mFirebaseAuth.getCurrentUser().getUid() ).setValue(newMember);
     }
 
 }

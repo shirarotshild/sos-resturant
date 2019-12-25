@@ -30,7 +30,7 @@ public class mainScreenManager extends AppCompatActivity implements View.OnClick
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
-                Intent intToMain = new Intent(mainScreenManager.this, loginManager.class);
+                Intent intToMain = new Intent(mainScreenManager.this, MainActivity.class);
                 startActivity(intToMain);
             }
         });

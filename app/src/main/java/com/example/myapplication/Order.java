@@ -2,14 +2,16 @@ package com.example.myapplication;
 
 public class Order {
 
-private String dish;
-private String uid;
+    private String dish;
+    private String uid;
 
-Order(String name,String uid){
+    Order (){}
 
-    this.dish=name;
-    this.uid=uid;
-}
+    Order(String name,String uid){
+
+        this.dish=name;
+        this.uid=uid;
+    }
     public void setName(String name) {
         this.dish = name;
     }
@@ -25,5 +27,7 @@ Order(String name,String uid){
     public String getUid() {
         return uid;
     }
+
+    public String toString(){return getName();}
 }
 
