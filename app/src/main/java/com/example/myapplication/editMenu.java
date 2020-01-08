@@ -1,92 +1,73 @@
 package com.example.myapplication;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
-
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.ArrayList;
 
 public class editMenu extends AppCompatActivity {
 
-    Button button_add_dish;
-    ListView list_dishes;
-    DatabaseReference reff;
-    ArrayList<String> arrayList= new ArrayList<>();
-    ArrayAdapter<String> adapter;
+    Button button_edit_drink;
+    Button button_edit_pizza;
+    Button button_edit_desserts;
+    Button button_edit_pasta;
+    Button button_edit_salads;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_menu);
+        button_edit_drink = findViewById(R.id.button_menu_drink);
+        button_edit_pizza=findViewById(R.id.button_edit_pizza);
+        button_edit_desserts=findViewById(R.id.button_edit_desserts);
+        button_edit_pasta=findViewById(R.id.button_edit_pasta);
+        button_edit_salads=findViewById(R.id.button_edit_salads);
 
-        button_add_dish= findViewById(R.id.button_add_dish);
-        button_add_dish.setOnClickListener(new View.OnClickListener() {
+        button_edit_drink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i= new Intent(editMenu.this, addDish1.class);
+                Intent i = new Intent(editMenu.this, editMenuDrink.class);
                 startActivity(i);
             }
         });
 
-        reff= FirebaseDatabase.getInstance().getReference("dishInformation");
-
-        list_dishes= findViewById(R.id.list_dishes);
-        adapter= new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
-
-        list_dishes.setAdapter(adapter);
-
-
-        reff.addChildEventListener(new ChildEventListener() {
+        button_edit_desserts.setOnClickListener(new View.OnClickListener() {
             @Override
-            //1111
-            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                String string=  dataSnapshot.getValue(dishInformation.class).toString();
-                arrayList.add(string);
-                adapter.notifyDataSetChanged();
-
+            public void onClick(View v) {
+                Intent i = new Intent(editMenu.this, editMenuDesserts.class);
+                startActivity(i);
             }
-
+        });
+        button_edit_pizza.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-
+            public void onClick(View v) {
+                Intent i = new Intent(editMenu.this, editMenuPizza.class);
+                startActivity(i);
             }
+        });
 
+        button_edit_pasta.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
+            public void onClick(View v) {
+                Intent i = new Intent(editMenu.this, editMenuPasta.class);
+                startActivity(i);
             }
+        });
 
+        button_edit_salads.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
+            public void onClick(View v) {
+                Intent i = new Intent(editMenu.this, editMenuSalads.class);
+                startActivity(i);
             }
         });
 
 
-    }
 
-    public void onClick(View v) {
-        if (v == button_add_dish) {
-        }
+
     }
 }

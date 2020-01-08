@@ -5,16 +5,18 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 
-public class Member implements Permit{
+public class Member{
 
     private String name;
     private String mail;
+    private String phoneNum;
     private String uid;
-    int kind= 1;
 
-    Member(String name, String mail,String uid){
+
+    Member(String name, String mail,String phone,String uid){
         this.name= name;
         this.mail= mail;
+        this.phoneNum= phone;
         this.uid=uid;
 
     }
@@ -24,28 +26,20 @@ public class Member implements Permit{
         String uid= u.getUid();
         name= r.child(uid).child("name").getKey();
         mail =r.child(uid).child("mail").getKey();
+        phoneNum= r.child(uid).child("phoneNum").getKey();
 
     }
 
-    @Override
-    public int getKind() {
-        return kind;
-    }
 
-    @Override
+
+
     public String getMail() {
         return mail;
     }
 
-    @Override
     public String getName() {
         return name;
     }
 
-    @Override
-    public String getUid() {
-        return uid;
-    }
-
-
+    public String getPhoneNum(){return phoneNum;}
 }

@@ -1,33 +1,39 @@
 package com.example.myapplication;
 
-public class dishInformation {
-   private static int dish_id = 0;
+import java.io.Serializable;
+
+public class dishInformation implements Serializable {
     String dish_name;
     String dish_price;
+    String dish_type;
+    String dish_key;
 
-    public dishInformation(String dish_name,String dish_id, String price) {
+    public dishInformation(String dish_name,String dish_id, String price,String dish_type) {
         this.dish_name = dish_name;
-        ++this.dish_id;
         this.dish_price = price;
+        this.dish_type=dish_type;
+
     }
-    public dishInformation(){
-        ++this.dish_id;
-    };
+    public dishInformation(){};
 
-    public int getDish_id() {
-        return dish_id;
-    }
-
-   // public void setDish_id(int dish_id) {
-       // this.dish_id = dish_id;
-   // }
-
-    public String getPrice() {
+    public String getDish_price() {
         return dish_price;
     }
 
-    public void setPrice(String price) {
+    public void setDish_price(String price) {
         this.dish_price = price;
+    }
+
+    public String getDish_type(){return this.dish_type;}
+
+    public void setDish_type(String dish_type){this.dish_type=dish_type;}
+
+    public String getDish_key_() {
+        return dish_key;
+    }
+
+    public void setDish_key(String dish_key) {
+        this.dish_key = dish_key;
     }
 
     public String getDish_name() {
@@ -37,6 +43,8 @@ public class dishInformation {
     public void setDish_name(String dish_name) {
         this.dish_name = dish_name;
     }
+
+
 
     public String toString(){
         return this.dish_name+" "+dish_price;

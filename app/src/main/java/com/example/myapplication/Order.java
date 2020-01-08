@@ -8,21 +8,13 @@ public class Order implements Serializable {
     private ArrayList<String> dishes;
     String orderId;
 
-    Order (){
-        dishes= new ArrayList<>();
+    Order (){ }
 
+    public String getOrderId() {
+        return orderId;
     }
 
-
-    public void addDish(String dish){
-        dishes.add(dish);
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
     }
-
-    public int getSize(){
-        return dishes.size();
-    }
-    public ArrayList<String> getDishes(){return dishes;}
-
-
-    public String toString(){return orderId;}
 }

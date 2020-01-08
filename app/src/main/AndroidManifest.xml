@@ -9,7 +9,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MyOrder"></activity>
+        <activity android:name=".orderDesserts"></activity>
+        <activity android:name=".orderSalads" />
+        <activity android:name=".orderPasta" />
+        <activity android:name=".orderDrink" />
+        <activity android:name=".orderPizzas" />
+        <activity android:name=".myOrder" />
+        <activity android:name=".menuSalads" />
+        <activity android:name=".menuPasta" />
+        <activity android:name=".menuPizzas" />
+        <activity android:name=".menuDrink" />
+        <activity android:name=".menuDessert" />
+        <activity android:name=".editMenuSalads" />
+        <activity android:name=".editMenuPasta" />
+        <activity android:name=".editMenuDesserts" />
+        <activity android:name=".editMenuPizza" />
+        <activity android:name=".editDish" />
+        <activity android:name=".editMenuDrink" />
+        <activity android:name=".LoginEmployee" />
         <activity android:name=".LoginMember" />
         <activity android:name=".MemberSignUp" />
         <activity android:name=".guestMenu" />
@@ -21,9 +38,12 @@
         <activity android:name=".mainScreenManager" />
         <activity android:name=".mainScreenGuest" />
         <activity android:name=".mainScreenMembers" />
-        <activity android:name=".mainScreenWorkers" />
+        <activity android:name=".mainScreenEmployee" />
         <activity android:name=".loginManager" />
+        <activity android:name=".ChangeDetails" />
+
         <activity android:name=".MainActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

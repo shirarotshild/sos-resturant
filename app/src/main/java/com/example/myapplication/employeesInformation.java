@@ -1,49 +1,57 @@
 package com.example.myapplication;
 
-public class employeesInformation {
+import java.io.Serializable;
+
+public class employeesInformation implements Serializable {
 
 
-    String last_name;
-    String first_name;
-    String number;
+    private String name;
+    String mail;
+    String phoneNum;
+    private String ID;
+    String uid;
 
 
     public employeesInformation(){}
-    public employeesInformation(String last_name,String first_name, String number) {
-        this.last_name = last_name;
-        this.first_name=first_name;
-        this.number=number;
+
+    public employeesInformation(String name,String mail, String number,String id,String uid) {
+        this.name = name;
+        this.mail=mail;
+        this.phoneNum=number;
+        this.ID=id;
+        this.uid= uid;
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public String getUid() {
+        return uid;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+    public String getMail() {
+        return mail;
     }
 
-
-    public String getLast_name() {
-        return last_name;
+    public String getName() {
+        return name;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    public String getPhoneNum(){return phoneNum;}
+    public String getID() {
+        return ID;
     }
 
-
-
-    public String getNumber() {
-        return number;
+    public void setID(String ID) {
+        this.ID = ID;
     }
 
-    public void setNumber(String number) {
-        this.number = number;
+    public void setName(String name) {
+        this.name = name;
     }
+    public void setPhoneNum(String num) {
+        this.phoneNum = num;
+    }
+
 
     public String toString(){
-        return this.first_name+" "+last_name+" phone number:"+number;
+        return "Name: "+name+"\ne-Mail: "+mail+"\nPhone number: "+phoneNum+"\n ID: "+ID;
     }
-
 }
