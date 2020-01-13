@@ -28,6 +28,7 @@ public class menuPizzas extends AppCompatActivity {
     ListView list_dishes;
     DatabaseReference reff;
     DatabaseReference ref;
+    DatabaseReference reff1;
     ArrayList<dishInformation> arrayList= new ArrayList<>();
     ArrayAdapter adapter;
 
@@ -36,6 +37,7 @@ public class menuPizzas extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_pizzas);
+        reff1=FirebaseDatabase.getInstance().getReference().child("order").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("price");
         reff= FirebaseDatabase.getInstance().getReference("dishInformation").child("pizzas");
         ref=FirebaseDatabase.getInstance().getReference("order").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("pizzas");
         list_dishes= findViewById(R.id.list_dishes);
@@ -96,6 +98,7 @@ public class menuPizzas extends AppCompatActivity {
 
                         ref.addListenerForSingleValueEvent(new ValueEventListener() {
                             long count=1;
+                            int price;
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 for(DataSnapshot data: dataSnapshot.getChildren()){
@@ -105,8 +108,9 @@ public class menuPizzas extends AppCompatActivity {
                                         break;
                                     }
                                 }
+                                price=(int)count*Integer.parseInt(dish.getDish_price());
                                 ref.child(dish.getDish_key_()).setValue(count);
-
+                                reff1.setValue(price);
                             }
 
                             @Override

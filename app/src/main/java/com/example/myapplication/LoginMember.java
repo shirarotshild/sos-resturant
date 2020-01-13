@@ -37,7 +37,7 @@ public class LoginMember extends AppCompatActivity {
         button_login_member.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                log.connect(editText_member_mail, editText_member_password, LoginMember.this, mainScreenMembers.class);
+                log.connect(editText_member_mail, editText_member_password, LoginMember.this, Tables.class);
             }
         });
 

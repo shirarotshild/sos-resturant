@@ -27,6 +27,7 @@ import java.util.ArrayList;
 public class menuPasta extends AppCompatActivity {
     ListView list_dishes;
     DatabaseReference reff;
+    DatabaseReference reff1;
     DatabaseReference ref;
     ArrayList<dishInformation> arrayList= new ArrayList<>();
     ArrayAdapter adapter;
@@ -36,7 +37,7 @@ public class menuPasta extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_pasta);
-
+        reff1=FirebaseDatabase.getInstance().getReference().child("order").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("price");
         reff= FirebaseDatabase.getInstance().getReference("dishInformation").child("pasta");
         ref=FirebaseDatabase.getInstance().getReference("order").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("pasta");
         list_dishes= findViewById(R.id.list_dishes);
@@ -96,15 +97,18 @@ public class menuPasta extends AppCompatActivity {
 
                         ref.addListenerForSingleValueEvent(new ValueEventListener() {
                             long count=1;
+                            int price;
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 for(DataSnapshot data: dataSnapshot.getChildren()){
-
                                     if( data.getKey().equals(dish.getDish_key_())){
                                         count= (long)data.getValue()+1;
                                         break;
                                     }
                                 }
+                                price=(int)count*Integer.parseInt(dish.getDish_price());
+                                ref.child(dish.getDish_key_()).setValue(count);
+                                reff1.setValue(price);
                                 ref.child(dish.getDish_key_()).setValue(count);
 
                             }

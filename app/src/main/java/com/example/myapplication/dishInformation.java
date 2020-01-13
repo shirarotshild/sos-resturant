@@ -7,8 +7,13 @@ public class dishInformation implements Serializable {
     String dish_price;
     String dish_type;
     String dish_key;
+    long amount;
 
-    public dishInformation(String dish_name,String dish_id, String price,String dish_type) {
+    public void setAmount(long amount) {
+        this.amount = amount;
+    }
+
+    public dishInformation(String dish_name, String dish_id, String price, String dish_type) {
         this.dish_name = dish_name;
         this.dish_price = price;
         this.dish_type=dish_type;
@@ -47,7 +52,15 @@ public class dishInformation implements Serializable {
 
 
     public String toString(){
-        return this.dish_name+" "+dish_price;
+        if(amount==0) {
+            return this.dish_name + " " + dish_price;
+
+        }
+        else {
+            return this.dish_name + " " + dish_price + "\n"+
+                    "amount" + amount;
+        }
+
     }
 
 

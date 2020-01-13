@@ -26,6 +26,7 @@ import java.util.ArrayList;
 
 public class menuSalads extends AppCompatActivity {
     ListView list_dishes;
+    DatabaseReference reff1;
     DatabaseReference reff;
     DatabaseReference ref;
     ArrayList<dishInformation> arrayList= new ArrayList<>();
@@ -36,8 +37,7 @@ public class menuSalads extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_salads);
-
-
+        reff1=FirebaseDatabase.getInstance().getReference().child("order").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("price");
         reff= FirebaseDatabase.getInstance().getReference("dishInformation").child("salads");
         ref=FirebaseDatabase.getInstance().getReference("order").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("salads");
         list_dishes= findViewById(R.id.list_dishes);
@@ -97,6 +97,7 @@ public class menuSalads extends AppCompatActivity {
 
                         ref.addListenerForSingleValueEvent(new ValueEventListener() {
                             long count=1;
+                            int price;
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 for(DataSnapshot data: dataSnapshot.getChildren()){
@@ -106,6 +107,8 @@ public class menuSalads extends AppCompatActivity {
                                         break;
                                     }
                                 }
+                                price=(int)count*Integer.parseInt(dish.getDish_price());
+                                reff1.setValue(price);
                                 ref.child(dish.getDish_key_()).setValue(count);
 
                             }

@@ -1,14 +1,14 @@
 package com.example.myapplication;
 
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MemberSignUp extends AppCompatActivity {
 
@@ -41,7 +41,7 @@ public class MemberSignUp extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 log.signIn(emailId, password, editText_member_name,editText_member_phone_num,editText_member_phone_num,
-                        MemberSignUp.this, mainScreenMembers.class);
+                        MemberSignUp.this, Tables.class);
             }
         });
 //                final String email = emailId.getText().toString();

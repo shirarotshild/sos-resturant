@@ -1,11 +1,17 @@
 package com.example.myapplication;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,6 +29,7 @@ public class orderDesserts extends AppCompatActivity {
     DatabaseReference reff;
     DatabaseReference ref;
     ArrayList<String> arrayList= new ArrayList<>();
+    ArrayList<Long> arrayList1 = new ArrayList<Long>();
     ArrayAdapter adapter;
     ArrayList<dishInformation> dishes= new ArrayList<>();
 
@@ -35,11 +42,15 @@ public class orderDesserts extends AppCompatActivity {
         list_dishes= findViewById(R.id.list_dishes);
         adapter= new ArrayAdapter(this, android.R.layout.simple_list_item_1, dishes);
         list_dishes.setAdapter(adapter);
+
+
         reff.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 String key=dataSnapshot.getKey();
+                long amount=dataSnapshot.getValue(Long.class);
                 arrayList.add(key);
+                arrayList1.add(amount);
 
 
             }
@@ -64,36 +75,113 @@ public class orderDesserts extends AppCompatActivity {
 
             }
         });
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(int i=0; i<arrayList.size();i++) {
+                    for (DataSnapshot data : dataSnapshot.getChildren()) {
+                        if(arrayList.get(i).equals(data.getKey())){
+                            dishInformation dish=data.getValue(dishInformation.class);
+                            dish.setAmount(arrayList1.get(i));
+                            dish.setDish_key(arrayList.get(i));
+                            dishes.add(dish);
+                            adapter.notifyDataSetChanged();
 
-
-
-
-                ref.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                        for(String key: arrayList) {
-                            for (DataSnapshot data : dataSnapshot.getChildren()) {
-                                if(key.equals(data.getKey())){
-                                    dishes.add(data.getValue(dishInformation.class));
-                                    adapter.notifyDataSetChanged();
-
-                                }
-                            }
                         }
                     }
+                }
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        list_dishes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+                //   Toast.makeText(getApplicationContext(), (dishInformation) parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
+                final dishInformation dish=(dishInformation) parent.getItemAtPosition(position);
+                final AlertDialog.Builder mBuilder = new AlertDialog.Builder(orderDesserts.this);
+                mBuilder.setTitle("Valide Your Command ");
+                mBuilder.setMessage(dish.getDish_name());
+
+                mBuilder.setPositiveButton("Add another one", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                    public void onClick(DialogInterface dialog, int which) {
+                        reff.addListenerForSingleValueEvent(new ValueEventListener() {
+                            long count=1;
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                for(DataSnapshot data: dataSnapshot.getChildren()){
+                                    if( data.getKey().equals(dish.getDish_key_())){
+                                        count= (long)data.getValue()+1;
+                                        break;
+                                    }
+                                }
+                                reff.child(dish.getDish_key_()).setValue(count);
 
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                        Toast.makeText(getApplicationContext(), "order", Toast.LENGTH_SHORT).show();
+                        Intent i= new Intent(orderDesserts.this, orderDesserts.class);
+
+                        startActivity(i);
+
+
+
+
+
+
+                    }});
+                mBuilder.setNegativeButton("Delete", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) { ;
+                        reff.addListenerForSingleValueEvent(new ValueEventListener() {
+                            long count=1;
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                for(DataSnapshot data: dataSnapshot.getChildren()){
+                                    if( data.getKey().equals(dish.getDish_key_())){
+                                        count= (long)data.getValue()-1;
+                                        break;
+                                    }
+                                }
+                                if(count==0){
+                                    reff.child(dish.getDish_key_()).removeValue();
+                                }
+                                else {
+                                    reff.child(dish.getDish_key_()).setValue(count);
+
+                                }
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                        Toast.makeText(getApplicationContext(), "Delete", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(orderDesserts.this, orderDesserts.class));
                     }
                 });
 
+                AlertDialog mDialog = mBuilder.create();
+                mDialog.show();
 
 
 
+            }
 
-
-
+        });
     }
+
+
+
 }

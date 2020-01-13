@@ -28,6 +28,7 @@ public class menuDessert extends AppCompatActivity {
     ListView list_dishes;
     DatabaseReference reff;
     DatabaseReference ref;
+    DatabaseReference reff1;
     ArrayList<dishInformation> arrayList= new ArrayList<>();
     ArrayAdapter adapter;
 
@@ -36,6 +37,7 @@ public class menuDessert extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_dessert);
+        reff1=FirebaseDatabase.getInstance().getReference().child("order").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("price");
         reff = FirebaseDatabase.getInstance().getReference("dishInformation").child("desserts");
         ref=FirebaseDatabase.getInstance().getReference("order").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("desserts");
         list_dishes = findViewById(R.id.list_dishes);
@@ -82,7 +84,6 @@ public class menuDessert extends AppCompatActivity {
         list_dishes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
-                //   Toast.makeText(getApplicationContext(), (dishInformation) parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
                 final dishInformation dish=(dishInformation) parent.getItemAtPosition(position);
                 final AlertDialog.Builder mBuilder = new AlertDialog.Builder(menuDessert.this);
                 mBuilder.setTitle("Valide Your Command ");
@@ -91,41 +92,21 @@ public class menuDessert extends AppCompatActivity {
                 mBuilder.setPositiveButton("order", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-//                        long count=1;
-//                        ref.addListenerForSingleValueEvent(new ValueEventListener() {
-//                            @Override
-//                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//
-//                                for(DataSnapshot data: dataSnapshot.getChildren()){
-//
-//                                   if( data.getKey().equals(dish.getDish_key_())){
-//                                      count= (long)data.getValue()+1;
-//                                      break;
-//                                   }
-//                                }
-//                                ref.child(dish.getDish_key_()).setValue(count);
-//
-//                            }
-//
-//                            @Override
-//                            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//                            }
-//                        });
-
-
                         ref.addListenerForSingleValueEvent(new ValueEventListener() {
                             long count=1;
+                            int price;
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 for(DataSnapshot data: dataSnapshot.getChildren()){
 
-                                   if( data.getKey().equals(dish.getDish_key_())){
-                                      count= (long)data.getValue()+1;
-                                      break;
-                                   }
+                                    if( data.getKey().equals(dish.getDish_key_())) {
+                                        count = (long) data.getValue() + 1;
+                                        break;
+                                    }
                                 }
+                                price=(int)count*Integer.parseInt(dish.getDish_price());
                                 ref.child(dish.getDish_key_()).setValue(count);
+                                reff1.setValue(price);
 
                             }
 

@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".orderDesserts"></activity>
+        <activity android:name=".Tables"></activity>
+        <activity android:name=".Check" />
+        <activity android:name=".orderDesserts" />
         <activity android:name=".orderSalads" />
         <activity android:name=".orderPasta" />
         <activity android:name=".orderDrink" />
@@ -41,9 +43,7 @@
         <activity android:name=".mainScreenEmployee" />
         <activity android:name=".loginManager" />
         <activity android:name=".ChangeDetails" />
-
         <activity android:name=".MainActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

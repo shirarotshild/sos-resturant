@@ -13,6 +13,8 @@ public class Member{
     private String uid;
 
 
+    Member(){}
+
     Member(String name, String mail,String phone,String uid){
         this.name= name;
         this.mail= mail;

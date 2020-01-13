@@ -28,6 +28,7 @@ public class menuDrink extends AppCompatActivity {
     ListView list_dishes;
     DatabaseReference ref;
     DatabaseReference reff;
+    DatabaseReference reff1;
     ArrayList<dishInformation> arrayList= new ArrayList<>();
     ArrayAdapter adapter;
 
@@ -36,6 +37,7 @@ public class menuDrink extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_drink);
+        reff1=FirebaseDatabase.getInstance().getReference().child("order").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("price");
         reff= FirebaseDatabase.getInstance().getReference("dishInformation").child("drink");
         ref=FirebaseDatabase.getInstance().getReference("order").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("drink");
         list_dishes= findViewById(R.id.list_dishes);
@@ -45,7 +47,7 @@ public class menuDrink extends AppCompatActivity {
 
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                dishInformation dish=  dataSnapshot.getValue(dishInformation.class);
+                dishInformation dish= dataSnapshot.getValue(dishInformation.class);
                 String key=dataSnapshot.getKey();
                 dish.setDish_key(key);
                 arrayList.add(dish);
@@ -95,6 +97,7 @@ public class menuDrink extends AppCompatActivity {
 
                         ref.addListenerForSingleValueEvent(new ValueEventListener() {
                             long count=1;
+                            int price;
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 for(DataSnapshot data: dataSnapshot.getChildren()){
@@ -104,6 +107,10 @@ public class menuDrink extends AppCompatActivity {
                                         break;
                                     }
                                 }
+                                price=(int)count*Integer.parseInt(dish.getDish_price());
+                                ref.child(dish.getDish_key_()).setValue(count);
+                                reff1.setValue(price);
+
                                 ref.child(dish.getDish_key_()).setValue(count);
 
                             }
