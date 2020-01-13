@@ -159,6 +159,8 @@ public class mainScreenEmployee extends AppCompatActivity {
                                             break;
                                         }
                                     }
+                                    order.status++;
+                                    pullOrder.child(order.getOrderId()).child("status").setValue(order.status++);
                                 }
 
                                 @Override

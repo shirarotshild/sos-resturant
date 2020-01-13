@@ -106,7 +106,7 @@ public class Order implements Serializable {
         else if(status==1){
             s=s+"--In preparation--";
         }
-        else{
+        else if(status==2){
             s=s+"--sent to table--";
         }
 
