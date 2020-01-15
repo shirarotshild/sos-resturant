@@ -53,12 +53,14 @@ public class dishInformation implements Serializable {
 
     public String toString(){
         if(amount==0) {
-            return this.dish_name + " " + dish_price;
+            return this.dish_name + "\n"+ "price: "+
+                    dish_price+"$";
 
         }
         else {
-            return this.dish_name + " " + dish_price + "\n"+
-                    "amount" + amount;
+              return this.dish_name + "\n"+ "price: "+
+                    dish_price+"$\n"+
+                     "x"+amount;
         }
 
     }

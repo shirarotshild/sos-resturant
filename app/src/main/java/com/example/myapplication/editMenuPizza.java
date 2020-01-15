@@ -1,10 +1,5 @@
 package com.example.myapplication;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +9,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -92,7 +92,6 @@ public class editMenuPizza extends AppCompatActivity {
                 //   Toast.makeText(getApplicationContext(), (dishInformation) parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
                 final dishInformation dish=(dishInformation) parent.getItemAtPosition(position);
                 final AlertDialog.Builder mBuilder = new AlertDialog.Builder(editMenuPizza.this);
-                mBuilder.setTitle("Valide Your Command ");
                 mBuilder.setMessage(dish.getDish_name());
 
                 mBuilder.setPositiveButton("edit", new DialogInterface.OnClickListener() {

@@ -1,12 +1,11 @@
 package com.example.myapplication;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -25,7 +24,6 @@ public class mainScreenManager extends AppCompatActivity implements View.OnClick
         button_out_manager = findViewById(R.id.button_out_manager);
         button_employees = findViewById(R.id.button_emloyees);
         button_edit_menu=findViewById(R.id.button_edit_menu);
-        button_vendors=findViewById(R.id.button_vendors);
         button_out_manager.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

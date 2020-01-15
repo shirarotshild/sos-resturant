@@ -28,6 +28,7 @@ public class orderSalads extends AppCompatActivity {
     ListView list_dishes;
     DatabaseReference reff;
     DatabaseReference ref;
+    DatabaseReference reff1;
     ArrayList<String> arrayList= new ArrayList<>();
     ArrayList<Long> arrayList1 = new ArrayList<Long>();
     ArrayAdapter adapter;
@@ -37,6 +38,7 @@ public class orderSalads extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_salads);
+        reff1=FirebaseDatabase.getInstance().getReference().child("order").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("price");
         reff= FirebaseDatabase.getInstance().getReference("order").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("salads");
         ref= FirebaseDatabase.getInstance().getReference("dishInformation").child("salads");
         list_dishes= findViewById(R.id.list_dishes);
@@ -101,7 +103,6 @@ public class orderSalads extends AppCompatActivity {
                 //   Toast.makeText(getApplicationContext(), (dishInformation) parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
                 final dishInformation dish=(dishInformation) parent.getItemAtPosition(position);
                 final AlertDialog.Builder mBuilder = new AlertDialog.Builder(orderSalads.this);
-                mBuilder.setTitle("Valide Your Command ");
                 mBuilder.setMessage(dish.getDish_name());
 
                 mBuilder.setPositiveButton("Add another one", new DialogInterface.OnClickListener() {
@@ -126,16 +127,22 @@ public class orderSalads extends AppCompatActivity {
 
                             }
                         });
+                        reff1.addListenerForSingleValueEvent(new ValueEventListener() {
+                            long price;
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                price=(long)dataSnapshot.getValue();
+                                reff1.setValue(price+Integer.parseInt(dish.getDish_price()));
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
                         Toast.makeText(getApplicationContext(), "order", Toast.LENGTH_SHORT).show();
                         Intent i= new Intent(orderSalads.this, orderSalads.class);
-
                         startActivity(i);
-
-
-
-
-
-
                     }});
                 mBuilder.setNegativeButton("Delete", new DialogInterface.OnClickListener() {
                     @Override
@@ -158,6 +165,19 @@ public class orderSalads extends AppCompatActivity {
 
                                 }
 
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                        reff1.addListenerForSingleValueEvent(new ValueEventListener() {
+                            long price;
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                price=(long)dataSnapshot.getValue();
+                                reff1.setValue(price-Integer.parseInt(dish.getDish_price()));
                             }
 
                             @Override

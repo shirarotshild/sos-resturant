@@ -28,6 +28,7 @@ public class menuPasta extends AppCompatActivity {
     ListView list_dishes;
     DatabaseReference reff;
     DatabaseReference reff1;
+    DatabaseReference reff2;
     DatabaseReference ref;
     ArrayList<dishInformation> arrayList= new ArrayList<>();
     ArrayAdapter adapter;
@@ -38,6 +39,7 @@ public class menuPasta extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_pasta);
         reff1=FirebaseDatabase.getInstance().getReference().child("order").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("price");
+        reff2= FirebaseDatabase.getInstance().getReference().child("Users").child("Members").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("favoriteDishes").child("pasta");
         reff= FirebaseDatabase.getInstance().getReference("dishInformation").child("pasta");
         ref=FirebaseDatabase.getInstance().getReference("order").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("pasta");
         list_dishes= findViewById(R.id.list_dishes);
@@ -88,7 +90,6 @@ public class menuPasta extends AppCompatActivity {
                 //   Toast.makeText(getApplicationContext(), (dishInformation) parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
                 final dishInformation dish=(dishInformation) parent.getItemAtPosition(position);
                 final AlertDialog.Builder mBuilder = new AlertDialog.Builder(menuPasta.this);
-                mBuilder.setTitle("Valide Your Command ");
                 mBuilder.setMessage(dish.getDish_name());
 
                 mBuilder.setPositiveButton("order", new DialogInterface.OnClickListener() {
@@ -97,7 +98,6 @@ public class menuPasta extends AppCompatActivity {
 
                         ref.addListenerForSingleValueEvent(new ValueEventListener() {
                             long count=1;
-                            int price;
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 for(DataSnapshot data: dataSnapshot.getChildren()){
@@ -106,11 +106,24 @@ public class menuPasta extends AppCompatActivity {
                                         break;
                                     }
                                 }
-                                price=(int)count*Integer.parseInt(dish.getDish_price());
                                 ref.child(dish.getDish_key_()).setValue(count);
-                                reff1.setValue(price);
-                                ref.child(dish.getDish_key_()).setValue(count);
+                            }
 
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                        reff1.addListenerForSingleValueEvent(new ValueEventListener() {
+                            long price;
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                if(dataSnapshot.getValue()==null)
+                                    reff1.setValue(Integer.parseInt(dish.getDish_price())) ;
+                                else {
+                                    price = (long) dataSnapshot.getValue();
+                                    reff1.setValue(price + Integer.parseInt(dish.getDish_price()));
+                                }
                             }
 
                             @Override
@@ -122,13 +135,14 @@ public class menuPasta extends AppCompatActivity {
                         Intent i= new Intent(menuPasta.this, menuPasta.class);
 
                         startActivity(i);
-
-
-
-
-
-
                     }});
+                mBuilder.setNeutralButton("Add to Favorites", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        reff2.child(dish.getDish_key_()).setValue(0);
+                        startActivity(new Intent(menuPasta.this,menuPasta.class));
+                    }
+                });
                 mBuilder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) { ;

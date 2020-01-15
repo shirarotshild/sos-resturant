@@ -9,11 +9,13 @@ public class Order implements Serializable {
 
     String orderId;
     String memberUID;
+    long prices;
     ArrayList<String> dishKeys= new ArrayList<>();
-    ArrayList<String> dishesName= new ArrayList<>();
+    ArrayList<dishInformation> dishesName= new ArrayList<>();
     String userName;
     long table;
     int status;
+    ArrayList<String> oldOrders= new ArrayList<>();
 
     String date = "";  // Start date
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
@@ -25,28 +27,33 @@ public class Order implements Serializable {
     }
 
 
-    public boolean addByTable(Order second){
-        if(getTable() == second.getTable()){
-            dishKeys.addAll(second.dishKeys);
-            if(!getMemberUID().equals(second.getMemberUID())) {
-                memberUID = memberUID + "," + second.getMemberUID();
-            }
-            return true;
+
+
+    public void addSameUser(Order second){
+        getDishKeys().addAll(second.getDishKeys());
+        oldOrders.add(second.getOrderId());
+        prices=prices+second.prices;
+        if(getMemberUID()==null) {
+            setOrderId(second.getOrderId());
+            setStatus(second.getStatus());
+            setMemberUID(second.getMemberUID());
+            setTable(second.getTable());
         }
-        return false;
-    }
-    public boolean addByUser(Order second){
-        if(getMemberUID().equals(second.getMemberUID())){
-            getDishKeys().addAll(second.dishKeys);
-            return true;
-        }
-        return false;
+
     }
 
     public String dateOnly(){
         String []a= date.split(" ");
         return a[0];
     }
+    public long getPrices() {
+        return prices;
+    }
+
+    public void setPrices(long prices) {
+        this.prices = prices;
+    }
+
     public String getDate() {
         return date;
     }
@@ -95,24 +102,38 @@ public class Order implements Serializable {
         this.orderId = orderId;
     }
 
+
     public String toString() {
-        String s ="-"+table+"-\n"+ userName + ":\n";
-        for (String dish : dishesName) {
-            s = s + dish + "\n";
+        String s="";
+        if(status==3){
+            s="-"+table+"-\n";
         }
-        if(status==0){
-            s=s +"--waiting--";
+        else if(status==4){
+            for (dishInformation dish : dishesName) {
+                s = s + dish + "\n";
+            }
+            //s=s+"price: "+prices;
         }
-        else if(status==1){
-            s=s+"--In preparation--";
-        }
-        else if(status==2){
-            s=s+"--sent to table--";
+        else {
+            if (status == 0) {
+                s = s + "--waiting--";
+            } else if (status == 1) {
+                s = s + "--In preparation--";
+            } else if (status == 2) {
+                s = s + "--sent to table--";
+            }
+            s=s+"\n"+"-"+table+"- "+ userName + ":\n";
+            for (dishInformation dish : dishesName) {
+                s = s + dish.getDish_name() + "\n";
+            }
         }
 
 
         return s;
     }
+
+
+
 
 
 }

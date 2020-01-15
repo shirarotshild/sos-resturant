@@ -4,27 +4,93 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/shal24"
     tools:context=".mainScreenMembers">
+
 
     <Button
         android:id="@+id/button_menu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="169dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="121dp"
+        android:layout_marginTop="117dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="428dp"
+        android:fontFamily="@font/aclonica"
         android:text="menu"
-        tools:layout_editor_absoluteX="133dp"
-        tools:layout_editor_absoluteY="93dp" />
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/button_log_out"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="294dp"
-        android:layout_marginTop="549dp"
-        android:layout_marginEnd="29dp"
-        android:layout_marginBottom="6dp"
+        android:layout_width="160dp"
+        android:layout_height="74dp"
+        android:layout_marginStart="242dp"
+        android:layout_marginTop="527dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginBottom="2dp"
+        android:fontFamily="@font/aclonica"
         android:text="logout"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_favorite_dishes"
+        android:layout_width="169dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="121dp"
+        android:layout_marginTop="208dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="337dp"
+        android:fontFamily="@font/aclonica"
+        android:text="Favorite dishes"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/button_orders"
+        android:layout_width="169dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="121dp"
+        android:layout_marginTop="298dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="247dp"
+        android:fontFamily="@font/aclonica"
+        android:text="orders"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/button_call_for_waiter"
+        android:layout_width="168dp"
+        android:layout_height="76dp"
+        android:layout_marginTop="525dp"
+        android:layout_marginEnd="243dp"
+        android:layout_marginBottom="2dp"
+        android:fontFamily="@font/aclonica"
+        android:text="call for waiter"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

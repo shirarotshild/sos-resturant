@@ -4,32 +4,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/shal24"
     tools:context=".mainScreenEmployee">
 
     <ListView
         android:id="@+id/kitchen_orders"
-        android:layout_width="331dp"
-        android:layout_height="468dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="134dp"
+        android:layout_width="371dp"
+        android:layout_height="330dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="257dp"
+        android:background="@drawable/shal24"
+        android:textSize="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/button_check"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="135dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="188dp"
-        android:layout_marginBottom="26dp"
-        android:text="Button"
+    <ListView
+        android:id="@+id/call"
+        android:layout_width="371dp"
+        android:layout_height="193dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="375dp"
+        android:layout_marginEnd="19dp"
+        android:layout_marginBottom="35dp"
+        android:background="@drawable/shal24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/kitchen_orders" />
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

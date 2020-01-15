@@ -4,89 +4,119 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".memberMenu">
+    android:background="@drawable/shal24"
+    tools:context=".memberMenu"><![CDATA[
 
-    <Button
-        android:id="@+id/button_my_order"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="172dp"
-        android:layout_marginEnd="146dp"
-        android:layout_marginBottom="41dp"
-        android:text="my order"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".editMenu">
 
+
+
+
+
+
+
+    ]]>
+
     <Button
-        android:id="@+id/button_menu_drink"
-        android:layout_width="126dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginBottom="458dp"
-        android:text="drink"
+        android:id="@+id/button_my_order"
+        android:layout_width="208dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="102dp"
+        android:layout_marginTop="489dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginBottom="59dp"
+        android:fontFamily="@font/aclonica"
+        android:text="my order"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_menu_drink"
+        android:layout_width="208dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="102dp"
+        android:layout_marginTop="65dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginBottom="483dp"
+        android:fontFamily="@font/aclonica"
+        android:text="drink"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button_edit_pizza"
-        android:layout_width="126dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginBottom="376dp"
+        android:layout_width="208dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="102dp"
+        android:layout_marginTop="136dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginBottom="412dp"
+        android:fontFamily="@font/aclonica"
         android:text="Pizzas"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_menu_drink" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button_edit_desserts"
-        android:layout_width="126dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="19dp"
-        android:layout_marginBottom="25dp"
+        android:layout_width="208dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="102dp"
+        android:layout_marginTop="216dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginBottom="332dp"
+        android:fontFamily="@font/aclonica"
         android:text="desserts"
-        app:layout_constraintBottom_toTopOf="@+id/button_edit_pasta"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_edit_pizza" />
-
-    <Button
-        android:id="@+id/button_edit_pasta"
-        android:layout_width="127dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="23dp"
-        android:layout_marginBottom="21dp"
-        android:text="pasta"
-        app:layout_constraintBottom_toTopOf="@+id/button_edit_salads"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_edit_desserts" />
-
-    <Button
-        android:id="@+id/button_edit_salads"
-        android:layout_width="127dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="124dp"
-        android:text="Salads"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_edit_pasta" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_edit_pasta"
+        android:layout_width="208dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="102dp"
+        android:layout_marginTop="290dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginBottom="258dp"
+        android:fontFamily="@font/aclonica"
+        android:text="pasta"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_edit_salads"
+        android:layout_width="208dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="102dp"
+        android:layout_marginTop="368dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginBottom="180dp"
+        android:fontFamily="@font/aclonica"
+        android:text="Salads"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

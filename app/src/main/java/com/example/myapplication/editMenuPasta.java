@@ -93,7 +93,6 @@ public class editMenuPasta extends AppCompatActivity {
                 //   Toast.makeText(getApplicationContext(), (dishInformation) parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
                 final dishInformation dish=(dishInformation) parent.getItemAtPosition(position);
                 final AlertDialog.Builder mBuilder = new AlertDialog.Builder(editMenuPasta.this);
-                mBuilder.setTitle("Valide Your Command ");
                 mBuilder.setMessage(dish.getDish_name());
 
                 mBuilder.setPositiveButton("edit", new DialogInterface.OnClickListener() {

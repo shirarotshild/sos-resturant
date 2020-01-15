@@ -9,8 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Tables"></activity>
-        <activity android:name=".Check" />
+        <activity android:name=".favoriteSalads"></activity>
+        <activity android:name=".favoritePasta" />
+        <activity android:name=".favoriteDesserts" />
+        <activity android:name=".favoritePizzas" />
+        <activity android:name=".favoriteDrink" />
+        <activity android:name=".favoriteDishes" />
+        <activity android:name=".Tables" />
         <activity android:name=".orderDesserts" />
         <activity android:name=".orderSalads" />
         <activity android:name=".orderPasta" />
@@ -31,7 +36,6 @@
         <activity android:name=".LoginEmployee" />
         <activity android:name=".LoginMember" />
         <activity android:name=".MemberSignUp" />
-        <activity android:name=".guestMenu" />
         <activity android:name=".memberMenu" />
         <activity android:name=".addDish1" />
         <activity android:name=".editMenu" />

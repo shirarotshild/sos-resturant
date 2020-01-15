@@ -59,6 +59,8 @@ public class myOrder extends AppCompatActivity {
                         order.setOrderId(ref.child(dataSnapshot.getKey()).push().getKey());
                         order.setMemberUID(FirebaseAuth.getInstance().getCurrentUser().getUid());
                         order.setDishKeys(new ArrayList<String>());
+                        order.setPrices(dataSnapshot.child("price").getValue(Long.class)
+                        );
                         table=dataSnapshot.child("Table").getValue(Long.class);
                         order.setTable(table);
                         for(DataSnapshot data: dataSnapshot.getChildren()){
@@ -81,9 +83,6 @@ public class myOrder extends AppCompatActivity {
 
                     }
                 });
-
-
-
                 Intent intToMain = new Intent(myOrder.this, memberMenu.class);
                 startActivity(intToMain);
             }
@@ -125,7 +124,7 @@ public class myOrder extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.getValue()!=null) {
                     long price = (long) dataSnapshot.getValue();
-                    String price1 = "" + price;
+                    String price1 = "price: " + price+"$";
                     txtPrice.setText((price1));
                 }
             }

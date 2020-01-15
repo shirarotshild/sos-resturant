@@ -26,6 +26,7 @@ import java.util.ArrayList;
 
 public class orderPasta extends AppCompatActivity {
     ListView list_dishes;
+    DatabaseReference reff1;
     DatabaseReference reff;
     DatabaseReference ref;
     ArrayList<String> arrayList= new ArrayList<>();
@@ -37,6 +38,7 @@ public class orderPasta extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_pasta);
+        reff1=FirebaseDatabase.getInstance().getReference().child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         reff= FirebaseDatabase.getInstance().getReference("order").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("pasta");
         ref= FirebaseDatabase.getInstance().getReference("dishInformation").child("pasta");
         list_dishes= findViewById(R.id.list_dishes);
@@ -101,7 +103,6 @@ public class orderPasta extends AppCompatActivity {
                 //   Toast.makeText(getApplicationContext(), (dishInformation) parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
                 final dishInformation dish=(dishInformation) parent.getItemAtPosition(position);
                 final AlertDialog.Builder mBuilder = new AlertDialog.Builder(orderPasta.this);
-                mBuilder.setTitle("Valide Your Command ");
                 mBuilder.setMessage(dish.getDish_name());
 
                 mBuilder.setPositiveButton("Add another one", new DialogInterface.OnClickListener() {
@@ -119,6 +120,19 @@ public class orderPasta extends AppCompatActivity {
                                 }
                                 reff.child(dish.getDish_key_()).setValue(count);
 
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                        reff1.addListenerForSingleValueEvent(new ValueEventListener() {
+                            long price;
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                price=(long)dataSnapshot.getValue();
+                                reff1.setValue(price+Integer.parseInt(dish.getDish_price()));
                             }
 
                             @Override
@@ -158,6 +172,19 @@ public class orderPasta extends AppCompatActivity {
 
                                 }
 
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                        reff1.addListenerForSingleValueEvent(new ValueEventListener() {
+                            long price;
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                price=(long)dataSnapshot.getValue();
+                                reff1.setValue(price-Integer.parseInt(dish.getDish_price()));
                             }
 
                             @Override

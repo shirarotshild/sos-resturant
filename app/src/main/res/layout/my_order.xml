@@ -4,45 +4,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".myOrder">
+    android:background="@drawable/shal24"
+    tools:context=".myOrder"
+    tools:layout_editor_absoluteY="81dp">
 
     <ListView
         android:id="@+id/list_dishes"
-        android:layout_width="350dp"
-        android:layout_height="380dp"
-        android:layout_marginTop="74dp"
-        android:layout_marginBottom="25dp"
-        app:layout_constraintBottom_toTopOf="@+id/textViewprice"
+        android:layout_width="351dp"
+        android:layout_height="399dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="31dp"
+        android:layout_marginBottom="172dp"
+        android:background="@drawable/shal24"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button_order"
-        android:layout_width="70dp"
-        android:layout_height="34dp"
-        android:layout_marginStart="166dp"
-        android:layout_marginTop="71dp"
-        android:layout_marginEnd="33dp"
-        android:layout_marginBottom="44dp"
+        android:layout_width="144dp"
+        android:layout_height="68dp"
+        android:layout_marginTop="516dp"
+        android:fontFamily="@font/aclonica"
         android:text="order"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/textViewprice"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/list_dishes" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textViewprice"
-        android:layout_width="126dp"
-        android:layout_height="65dp"
-        android:layout_marginStart="33dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="59dp"
+        android:layout_width="91dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="139dp"
+        android:layout_marginTop="429dp"
+        android:layout_marginEnd="146dp"
+        android:layout_marginBottom="109dp"
+        android:background="@drawable/shal24"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button_order"
-        app:layout_constraintTop_toBottomOf="@+id/list_dishes" />
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

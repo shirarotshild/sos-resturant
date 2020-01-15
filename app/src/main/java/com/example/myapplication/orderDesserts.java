@@ -27,6 +27,7 @@ import java.util.ArrayList;
 public class orderDesserts extends AppCompatActivity {
     ListView list_dishes;
     DatabaseReference reff;
+    DatabaseReference reff1;
     DatabaseReference ref;
     ArrayList<String> arrayList= new ArrayList<>();
     ArrayList<Long> arrayList1 = new ArrayList<Long>();
@@ -37,6 +38,7 @@ public class orderDesserts extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_desserts);
+        reff1=FirebaseDatabase.getInstance().getReference().child("order").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("price");
         reff= FirebaseDatabase.getInstance().getReference("order").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("desserts");
         ref= FirebaseDatabase.getInstance().getReference("dishInformation").child("desserts");
         list_dishes= findViewById(R.id.list_dishes);
@@ -103,7 +105,6 @@ public class orderDesserts extends AppCompatActivity {
                 //   Toast.makeText(getApplicationContext(), (dishInformation) parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
                 final dishInformation dish=(dishInformation) parent.getItemAtPosition(position);
                 final AlertDialog.Builder mBuilder = new AlertDialog.Builder(orderDesserts.this);
-                mBuilder.setTitle("Valide Your Command ");
                 mBuilder.setMessage(dish.getDish_name());
 
                 mBuilder.setPositiveButton("Add another one", new DialogInterface.OnClickListener() {
@@ -121,6 +122,19 @@ public class orderDesserts extends AppCompatActivity {
                                 }
                                 reff.child(dish.getDish_key_()).setValue(count);
 
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                        reff1.addListenerForSingleValueEvent(new ValueEventListener() {
+                            long price;
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                price=(long)dataSnapshot.getValue();
+                                reff1.setValue(price+Integer.parseInt(dish.getDish_price()));
                             }
 
                             @Override
@@ -160,6 +174,19 @@ public class orderDesserts extends AppCompatActivity {
 
                                 }
 
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                        reff1.addListenerForSingleValueEvent(new ValueEventListener() {
+                            long price;
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                price=(long)dataSnapshot.getValue();
+                                reff1.setValue(price-Integer.parseInt(dish.getDish_price()));
                             }
 
                             @Override

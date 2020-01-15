@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".loginManager"
+    android:background="@drawable/shal24"
 
-    >
+    tools:context=".loginManager">
 
     <EditText
         android:id="@+id/manager_mail"
@@ -17,6 +17,7 @@
         android:layout_marginEnd="100dp"
         android:layout_marginBottom="442dp"
         android:ems="10"
+        android:fontFamily="@font/aclonica"
         android:hint="e-mail"
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -33,6 +34,7 @@
         android:layout_marginEnd="100dp"
         android:layout_marginBottom="359dp"
         android:ems="10"
+        android:fontFamily="@font/aclonica"
         android:hint="password"
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -48,7 +50,9 @@
         android:layout_marginTop="56dp"
         android:layout_marginEnd="161dp"
         android:layout_marginBottom="255dp"
+        android:fontFamily="@font/aclonica"
         android:text="login"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

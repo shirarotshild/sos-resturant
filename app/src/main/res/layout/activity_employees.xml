@@ -4,20 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/shal24"
     tools:context=".employees">
 
     <Button
         android:id="@+id/button_add_employee"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="85dp"
+        android:layout_height="41dp"
         android:layout_marginStart="100dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="100dp"
         android:layout_marginBottom="30dp"
+        android:fontFamily="@font/aclonica"
         android:text="ADD"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.547"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/list_employees" />
 
@@ -29,6 +32,7 @@
         android:layout_marginTop="45dp"
         android:layout_marginEnd="70dp"
         android:layout_marginBottom="30dp"
+        android:background="@drawable/shal24"
         app:layout_constraintBottom_toTopOf="@+id/button_add_employee"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

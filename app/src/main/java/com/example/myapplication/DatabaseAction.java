@@ -28,15 +28,15 @@ public class DatabaseAction {
     }
 
 
-    public String getDishName(String key, DataSnapshot dataSnapshot) {
+    public dishInformation getDishName(String key, DataSnapshot dataSnapshot) {
         for (DataSnapshot data : dataSnapshot.getChildren()) {
             for (DataSnapshot item : data.getChildren()) {
                 if (key.equals(item.getKey())) {
-                    return (item.getValue(dishInformation.class).getDish_name());
+                    return (item.getValue(dishInformation.class));
                 }
             }
         }
-        return key;
+        return new dishInformation();
     }
 
     public String getUserName(String uids,DataSnapshot dataSnapshot) {
@@ -47,8 +47,6 @@ public class DatabaseAction {
             for (DataSnapshot data : dataSnapshot.getChildren()) {
                 for (DataSnapshot item : data.getChildren()) {
                     if (uid.equals(item.getKey())) {
-                        Log.d("uid", item.getKey());
-                        Log.d("emplo", data.getKey());
                         if (data.getKey().equals("Employees")) {
                             users=users+" "+ item.getValue(employeesInformation.class).getName();
                         } else if (data.getKey().equals("Members")) {
